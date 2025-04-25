@@ -1,0 +1,19 @@
+# Elfa Noviana Sari 123140066 RA
+# Tugas4 NO1
+
+import math
+
+def hitung_akar_kuadrat():
+    try:
+        angka = input("Masukkan angka: ")
+        angka = float(angka)
+        
+        if angka <= 0:
+            print("Error: Akar kuadrat dari nol tidak diperbolehkan.")
+        else:
+            akar_kuadrat = math.sqrt(angka)
+            print(f"Akar kuadrat dari {angka} adalah {akar_kuadrat}")
+    except ValueError:
+        print("Input tidak valid. Harap masukkan angka yang valid.")
+
+hitung_akar_kuadrat()
