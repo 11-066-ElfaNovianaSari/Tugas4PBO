@@ -1,0 +1,63 @@
+# Elfa Noviana Sari 123140066 RA
+# Tugas 4 NO 2
+
+class TugasError(Exception):
+    pass
+
+def tambah_tugas(tugas_list, tugas):
+    tugas_list.append(tugas)
+    print("Tugas berhasil ditambahkan!")
+
+def hapus_tugas(tugas_list, nomor_tugas):
+    try:
+        tugas_list.pop(nomor_tugas - 1)
+        print("Tugas berhasil dihapus!")
+    except IndexError:
+        # Jika nomor tugas tidak ada, raise custom exception
+        raise TugasError(f"Tugas dengan nomor {nomor_tugas} tidak ditemukan.")
+
+def tampilkan_tugas(tugas_list):
+    if len(tugas_list) == 0:
+        print("Daftar tugas kosong.")
+    else:
+        print("Daftar Tugas:")
+        for i, tugas in enumerate(tugas_list, 1):
+            print(f"- {tugas}")
+
+def main():
+    tugas_list = []
+    
+    while True:
+        print("\nPilih aksi:")
+        print("1. Tambah tugas")
+        print("2. Hapus tugas")
+        print("3. Tampilkan daftar tugas")
+        print("4. Keluar")
+
+        try:
+            pilihan = int(input("Masukkan pilihan (1/2/3/4): "))
+            
+            if pilihan == 1:
+                tugas = input("Masukkan tugas yang ingin ditambahkan: ")
+                if tugas.strip() == "":  # Mengecek jika input kosong
+                    raise ValueError("Tugas tidak boleh kosong.")
+                tambah_tugas(tugas_list, tugas)
+            elif pilihan == 2:
+                nomor_tugas = int(input("Masukkan nomor tugas yang ingin dihapus: "))
+                hapus_tugas(tugas_list, nomor_tugas)
+            elif pilihan == 3:
+                tampilkan_tugas(tugas_list)
+            elif pilihan == 4:
+                print("Keluar dari program.")
+                break
+            else:
+                print("Pilihan tidak valid. Harap masukkan angka antara 1 sampai 4.")
+        except ValueError as e:
+            print(f"Error: {e}")
+        except TugasError as e:
+            print(f"Error: {e}")
+        except Exception as e:
+            print(f"Terjadi kesalahan: {e}")
+
+# Menjalankan program
+main()
